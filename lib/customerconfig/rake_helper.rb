@@ -12,7 +12,7 @@ module CC
     if !old_val.nil?
       puts "#{message} [#{old_val}]"
     elsif !default.nil?
-      puts "#{message} {#{default}}"
+      puts "#{message} [#{default}]"
     else
       puts message
     end
@@ -47,23 +47,15 @@ module CC
   def self.ask_host_info
     return if ![CustomerConfig.protocol, CustomerConfig.host, CustomerConfig.port].include?(nil) and !RECONFIG_CUSTOMER
 
-    old_val = CustomerConfig.host ? "#{CustomerConfig.protocol}://#{CustomerConfig.host}:#{CustomerConfig.port}" : nil
-    input = ask("- Protocol, host, and port (e.g. 'http://yourdomain.com')", old_val)
-    protocol, host, port = input.split(':')
-    CustomerConfig.protocol = protocol
-    CustomerConfig.host = host.split('//')[1]
-    CustomerConfig.port = port
+    CustomerConfig.protocol = "{{protocol}}"
+    CustomerConfig.host = "{{host}}"
+    CustomerConfig.port = ""
   end
 
   def self.ask_smtp_info
     return if !CustomerConfig.smtp.nil? and !RECONFIG_CUSTOMER
 
-    CustomerConfig.smtp = ask_hash(
-                                   [:address, :port, :domain],
-                                   ["- Address (e.g. 'smtp.yourmailserver.com')",
-                                    "- Port (e.g. '25')",
-                                    "- Domain (e.g. 'yourdomain.com')"],
-                                   CustomerConfig.smtp)
+    CustomerConfig.smtp = {:address => "{{address}}", :port => "{{port}}", :domain => "{{domain}}"}
   end
 
 end
