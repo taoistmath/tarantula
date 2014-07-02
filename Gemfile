@@ -39,7 +39,7 @@ group :test do
 end
 
 group :production do
-  gem 'passenger'
+  gem 'passenger', '= 3.0.19'
 end
 
 group :test, :development do
