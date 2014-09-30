@@ -141,6 +141,7 @@
 	overflow:hidden;
 	position:relative;
 	width:100%;
+	height: auto !important;
 	zoom:1;
 }
 
