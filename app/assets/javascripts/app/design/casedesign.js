@@ -229,6 +229,33 @@ Ext.extend(Ext.testia.CaseDesign, Ext.testia.MainContentDesign, {
 
         this.appForm.registerField(this.attachmentForm,'attachmentForm');
 
+       tmpEl = Ext.DomHelper.append(this.appForm.el.dom.parentNode,
+                                     {tag:'div', cls:'req_list'}, true);
+
+        this.req_list = new Ext.ux.ListPanel( tmpEl, {
+             ddGroup:'requirements-group',
+             cmenuEnabled: false,
+             searchEnabled: false,
+             deletedFolder: false,
+             toolbarTitle: "Related Requirements",
+             showListPath: false
+         }, false);
+
+
+         this.appForm.registerField(this.req_list.toolbar.addButton(
+             new Ext.Toolbar.Button(
+                 {text:'Remove',
+                  cls:'tarantula-btn-remove',
+                  scope: this,
+                  handler: function() {
+                      this.req_list.removeSelected();
+                  }
+                 })
+         ));
+
+         this.appForm.registerField(this.req_list, 'req_list');
+
+
 
         tmpEl = Ext.DomHelper.append(this.appForm.el.dom.parentNode,{tag:'div', cls:'steps',
                                                    children: [
@@ -558,8 +585,7 @@ Ext.extend(Ext.testia.CaseDesign, Ext.testia.MainContentDesign, {
         this.stepsgrid.toolbar = new Ext.Toolbar(gridHead,
                                             this.stepsgrid.toolbar_buttons);
 
-
-        tmpEl = Ext.DomHelper.append(this.appForm.el.dom.parentNode,
+       tmpEl = Ext.DomHelper.append(this.appForm.el.dom.parentNode,
                                      {tag:'div', cls:'req_list'}, true);
 
         this.req_list = new Ext.ux.ListPanel( tmpEl, {
@@ -567,23 +593,12 @@ Ext.extend(Ext.testia.CaseDesign, Ext.testia.MainContentDesign, {
              cmenuEnabled: false,
              searchEnabled: false,
              deletedFolder: false,
-             toolbarTitle: "Related Requirements",
+             toolbarTitle: "",
              showListPath: false
          }, false);
 
-
-         this.appForm.registerField(this.req_list.toolbar.addButton(
-             new Ext.Toolbar.Button(
-                 {text:'Remove',
-                  cls:'tarantula-btn-remove',
-                  scope: this,
-                  handler: function() {
-                      this.req_list.removeSelected();
-                  }
-                 })
-         ));
-
          this.appForm.registerField(this.req_list, 'req_list');
+
 
         this.appForm.initEnd();
     },
