@@ -1,5 +1,5 @@
 
-<%= form_tag csv_exports_path do %>
+<%= form_tag test_exports_path do %>
   <%= radio_button_tag 'export_type', 'case', true %> Cases
   <br/>
   <%= radio_button_tag 'export_type', 'requirement' %> Requirements
@@ -8,7 +8,7 @@
   <br/>
   <%= radio_button_tag 'export_type', 'execution' %> Executions
   <br/>
-  <%= radio_button_tag 'export_type', 'test_case' %> Test Case
+  <%= radio_button_tag 'export_type', 'test_case' %> Test Cases
   <%= text_field_tag 'test_case_title' %> Test Case Title
   
   <br/>
