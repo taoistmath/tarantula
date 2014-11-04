@@ -8,6 +8,10 @@
   <br/>
   <%= radio_button_tag 'export_type', 'execution' %> Executions
   <br/>
+  <%= radio_button_tag 'export_type', 'test_case' %> Test cases
+  <%= text_field_tag 'test_case_title' %> Test case title
+  
+  <br/>
   <br/>
   Recursion depth
   <%= select_tag 'recursion', 
