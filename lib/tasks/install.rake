@@ -36,8 +36,8 @@ end
         puts "Initialization tasks done. Please restart your web server services. Eg. apache, memcached etc"
       end
     else 
-      task :install => [] do
-        puts "Testia database already installed, nothing to do."
+task :install => ['delayed_job:install', 'assets:precompile', :environment] dox
+        puts "Initialization tasks done. Please restart your web server services. Eg. apache, memcached etc"
       end
     end
 end
