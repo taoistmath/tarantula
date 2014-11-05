@@ -36,7 +36,7 @@ end
         puts "Initialization tasks done. Please restart your web server services. Eg. apache, memcached etc"
       end
     else 
-  task :update => :environment do
+  task :install => :environment do
     system('git fetch')
 
     all_tags = IO.popen('git tag').read.split
