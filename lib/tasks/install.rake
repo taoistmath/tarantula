@@ -36,9 +36,12 @@ end
         puts "Initialization tasks done. Please restart your web server services. Eg. apache, memcached etc"
       end
     else 
-task :install => ['delayed_job:install', 'assets:precompile', :environment] do
-
-        puts "Initialization tasks done. Please restart your web server services. Eg. apache, memcached etc"
+      desc "Update Tarantula. Run on rails root directory."
+      task :install => :environment do
+        Rake::Task['db:migrate'].execute
+        Rake::Task['assets:clean'].execute
+        Rake::Task['assets:precompile'].execute
+        FileUtils.touch(File.join(Rails.root, 'tmp','restart.txt'))
       end
     end
 end
