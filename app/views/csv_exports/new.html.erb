@@ -8,8 +8,6 @@
   <br/>
   <%= radio_button_tag 'export_type', 'execution' %> Executions
   <br/>
-  <%= radio_button_tag 'export_type', 'test_case' %> Test Cases
-  <%= text_field_tag 'test_case_title' %> Test Case Title
   
   <br/>
   <br/>
@@ -27,3 +25,7 @@
 <% end %>
 
 <a href = "TarantulaFormatter.xlsm"><button>Download TarantulaFormatter.xlsm</button></a>
+<form  action="export_single_case.php" method="GET">
+  Test Case: <input type="text" name="testcase">
+  <input type="submit" value="Submit">
+</form>
