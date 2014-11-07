@@ -26,6 +26,7 @@ class Project < ActiveRecord::Base
   has_many :test_sets, :dependent => :destroy
   has_many :executions, :dependent => :destroy
   has_many :test_objects, :dependent => :destroy
+  has_many :test_cases, :dependent => :destroy
 
   # All of project's tags in all resources
   has_many :tags, :dependent => :destroy
